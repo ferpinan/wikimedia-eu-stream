@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ferpinan</groupId>
 	<artifactId>wikimedia-eu-stream</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>wikimedia-eu-stream</name>
 	<description>wikimedia-eu-stream</description>
 	<properties>

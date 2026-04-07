@@ -12,7 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 🧠 Extraer versión del pom.xml
       - name: Get project version
         id: pom_version
         run: |
@@ -35,7 +34,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 🚀 Build multi-arch + usar versión del pom
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
