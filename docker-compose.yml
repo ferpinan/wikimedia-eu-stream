@@ -4,6 +4,8 @@ services:
   wikimedia-eu-stream:
     image: ferpinan/wikimedia-eu-stream:latest
     container_name: wikimedia-eu-stream
+    ports:
+      - "8080:8080"
     environment:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     networks:

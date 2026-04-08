@@ -2,7 +2,7 @@ name: Build & Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
 
 jobs:
   build:
@@ -22,6 +22,21 @@ jobs:
             exec:exec)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Determine Docker tags
+        id: docker_tags
+        run: |
+          VERSION=${{ steps.pom_version.outputs.version }}
+          
+          # from pom.xml always applies
+          TAGS="ferpinan/wikimedia-eu-stream:$VERSION"
+          
+          # if push is tp main, we add "latest"
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            TAGS="$TAGS,ferpinan/wikimedia-eu-stream:latest"
+          fi
+          
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -40,6 +55,4 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: |
-            ferpinan/wikimedia-eu-stream:latest
-            ferpinan/wikimedia-eu-stream:${{ steps.pom_version.outputs.version }}
+          tags: ${{ steps.docker_tags.outputs.tags }}
