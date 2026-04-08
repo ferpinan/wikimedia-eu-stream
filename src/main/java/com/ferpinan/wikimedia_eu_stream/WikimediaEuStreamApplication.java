@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KafkaStreamsTutorialApplication {
+public class WikimediaEuStreamApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaStreamsTutorialApplication.class, args);
+		SpringApplication.run(WikimediaEuStreamApplication.class, args);
 	}
 
 }
